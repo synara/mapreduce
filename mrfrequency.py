@@ -2,9 +2,9 @@ from mrjob.job import MRJob
 
 class Frequency(MRJob):
     def mapper(self, _, line):
-        words = line.split(" ")
+        words = line.split(",")
         for word in words:
-            yield word, 1
+            yield word.lower(), 1
 
     def reducer(self, word, values):
         yield word, sum(values)
